@@ -1,0 +1,30 @@
+Spare Matrix
+    2D array where most of the elements are zero(or a default value). So special representations
+    are used to store only non-zero elements.
+    1. Memory Efficient
+    2. Fast
+    3. Graphs, Neural Networks, Machine Learning
+    | 1 0 0 0 |
+    | 0 0 0 2 |
+    | 0 0 0 0 |
+    | 0 3 0 0 | 4x4 Sparse Matrix
+    if (row*col/2) > 0 ---> Sparse Matrix ,i.e. more than half the elements are zero
+
+
+TYPES OF SPARSE MATRICES REPRESENTATIONS
+    1. Coordinate List -  COO
+    2. Compressed row - CSR
+    3. Compressed Spare Column - CSC
+
+COORDINATE LIST (COO)
+    1. Triplets(row,col,value)
+    2. Easy to construct
+    3. Good for storing and converting
+    In COO format, we store only non-zero values along with their row and col indices in a separate structure
+    COO_matrix [non-zero elements][3]
+
+COMPRESSED ROW (CSR)
+    1. Three Arrays
+        a. values[]
+        b. columnIndex[]
+        c. rowPointer[]
