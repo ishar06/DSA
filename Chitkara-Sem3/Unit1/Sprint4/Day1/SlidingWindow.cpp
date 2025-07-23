@@ -134,19 +134,18 @@ Finding maximum sum of a subrray of fixed size k using Sliding Window
 
 //-------------------------------------------------
 
-// Check for error in this code below
-bool func(int arr[], int n,int sum){
+bool checkSum(int arr[], int n,int sum){
     int windowSum = 0;
     int high = 0;
     for (int low =0; low<n; low++){
         while (windowSum<sum && high<n){
-            windowSum = windowSum + arr[high];
+            windowSum += arr[high];
             high++;
         }
         if (windowSum == sum){
             return true;
         }
-        windowSum = windowSum - arr[low];
+        windowSum -= arr[low];
     }
     return false;
 }
@@ -155,10 +154,5 @@ int main(){
     int arr[] = {1,4,20,3,10,5};
     int n = sizeof(arr)/sizeof(arr[0]);
     int sum = 33;
-    if (func(arr, n, sum)){
-        cout << "Yes" << endl;
-    }else{
-        cout << "No" << endl;
-    }
-
+    (checkSum(arr, n, sum)==true) ? cout << "Yes" << endl : cout << "No" << endl;
 }
