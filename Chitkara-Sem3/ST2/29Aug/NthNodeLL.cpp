@@ -93,6 +93,5 @@ int main(){
     l1.printLL();
     cout << l1.findNthFromLast(2) << endl;
     cout << l1.NthFromEnd(3) << endl;
-
     
 }
