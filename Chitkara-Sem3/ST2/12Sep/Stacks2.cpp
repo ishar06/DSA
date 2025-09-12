@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 #define MAX_SIZE 100
@@ -59,6 +60,10 @@ class MyStack{
         count = 0;
     }
 
+    int access(int index){
+        return items[index];
+    }
+
     void push(int item){
         if (count == MAX){
             cout << "Stack OverFlow!" << endl;
@@ -103,10 +108,67 @@ class MyStack{
     }
 };
 
+class StackVector{
+    private:
+    vector<int> items;
+
+    public:
+    void push(int item){
+        items.push_back(item);
+        cout << item << " pushed into the vector." << endl;
+    }
+
+    int pop(){
+        if (items.empty()){
+            cout << "Stack Underflow!" << endl;
+            return -1;
+        }
+        int topItem = items.back();
+        items.pop_back();
+        cout << topItem << " poped from stack." << endl;
+        return topItem;
+    }
+
+    int peek(){
+        if (items.empty()){
+            cout << "Stack Underflow!" << endl;
+            return -1;
+        }
+        int top = items.back();
+        return top;
+    }
+
+    void display(){
+        for (int i = items.size()-1; i>=0; i--){
+            cout << items[i] << endl;
+        }
+    }
+
+};
 
 int main(){
-    MyStack stack;
-    stack.push(5);
-    cout << stack.peek() << endl;
+
+    // MyStack stack;
+    // stack.push(5);
+    // stack.push(6);
+    // stack.push(7);
+    // cout << stack.peek() << endl;
+    // cout << stack.access(0) << endl;
+
+    StackVector stack;
+    int N;
+    cin >> N;
+    int arr[N];
+    for (int i=0; i<N; i++){
+        cin >> arr[i];
+    }
+    for (int i=0; i<N; i++){
+        stack.push(arr[i]);
+    }
+    cout << "----------" << endl;
+    cout << "Top --> " << stack.peek() << endl;
+    stack.display();
+
+    
 
 }
