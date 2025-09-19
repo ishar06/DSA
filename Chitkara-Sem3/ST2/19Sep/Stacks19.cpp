@@ -1,10 +1,3 @@
-/*
-Important Leetcode questions using Stacks
-Valid Parenthesis
-Baseball Game
-Next Greater Element - I
-*/
-
 
 #include <iostream>
 #include <vector>
