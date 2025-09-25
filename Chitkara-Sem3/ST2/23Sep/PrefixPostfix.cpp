@@ -61,9 +61,9 @@ int postfixEval(string s){
 }
 
 int main(){
-    string expr1 = "-+7*45+20";  
-    string expr2 = "745*+20+-";
-    string expr3 = "46+2/5*7+";
+    string expr1 = "-+7*45+20";  // prefix
+    string expr2 = "745*+20+-";  // postfix
+    string expr3 = "46+2/5*7+";  // postfix
     cout << prefixEval(expr1) << endl; 
     cout << postfixEval(expr3) << endl;  
  
