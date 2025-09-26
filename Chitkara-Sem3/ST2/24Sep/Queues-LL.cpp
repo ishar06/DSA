@@ -18,7 +18,7 @@ class Node{
 #define maxSize 100
 class LLQueue{
     private:
-    int Count;
+    int Count = 0;
     Node* head;
     Node* tail;
 
@@ -31,6 +31,7 @@ class LLQueue{
         Node* newNode = new Node(val);
         if (head == NULL){
             head = tail = newNode;
+            Count++;
             return;
         }
         tail->next = newNode;
