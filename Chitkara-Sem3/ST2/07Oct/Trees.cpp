@@ -56,14 +56,11 @@ void postorderTransversal(Node* root){
 }
 
 int main(){
-    vector<int> arr = {1,2,-1,-1,3,-1,-1};
+    vector<int> arr = {1,2,-1,-1,3,4,-1,-1,5,-1,-1};
     Node* root = buildTree(arr);
 
-    cout << "Root: " << root->data << endl;
-    cout << "Root Left Child: " << root->left->data << endl;
-    cout << "Root Right Child: " << root->right->data << endl;
 
-    preorderTransversal(root);
+    inorderTransversal(root);
 
     return 0;
 }
