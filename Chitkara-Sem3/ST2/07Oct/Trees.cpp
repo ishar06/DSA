@@ -17,16 +17,7 @@ class Node{
 
 static int idx = -1;
 
-Node* buildTree(vector<int> preorder){
-        idx++;
-        if (preorder[idx] == -1){
-            return NULL;
-        }
-        Node* root = new Node(preorder[idx]);
-        root->left = buildTree(preorder);
-        root->right = buildTree(preorder);
-        return root;
-};
+
 
 void preorderTransversal(Node* root){
     if (root == NULL){

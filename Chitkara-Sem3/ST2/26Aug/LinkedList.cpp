@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+
 class Node{
     public:
     int data;
@@ -12,10 +13,15 @@ class Node{
     }
 };
 
+
+
+
+
 class List{
     private:
     Node* head;
     Node* tail;
+    int size;
 
     public:
     List(){
@@ -26,13 +32,14 @@ class List{
     void push_front(int val){
         Node* newNode = new Node(val);
         if (head == NULL){
-            head = tail = newNode;
-            return;
+            head = tail = newNode;  
         }else{
             newNode->next = head;
             head = newNode;
         }
+        size++;
     }
+
 
     void push_back(int val){
         Node* newNode = new Node(val);
@@ -46,47 +53,123 @@ class List{
     }
 
     void pop_front(){
-        if (head==NULL){
-            cout << "Linked List is empty " << endl;
-            return;
-        }
-        Node* temp = head;
-        head = head->next;
-        temp->next = NULL;
-        delete temp;
+        if (head == NULL) return;
+        if (head == tail){
+            delete head;
+            head = tail = NULL;
+        }else{
+            Node* temp = head;
+            head = head->next;
+            temp->next = NULL;
+            delete temp;
+        }  
+        size--;
     }
 
     void pop_back(){
-        if (head==NULL){
-            cout << "Linked List is empty " << endl;
-            return;
+        if (head == NULL) return;
+        if (head == tail){
+            delete head;
+            head = tail = NULL;
+        }else{
+            Node* temp = head;
+            while (temp->next->next != NULL){
+                temp = temp->next;
+            }
+            temp->next = NULL;
+            delete temp;
         }
-        Node* temp = head;
-        while (temp->next->next != NULL){
-            temp = temp->next;
-        }
-        temp->next = NULL;
-        delete temp->next;
+        size--;
     }
 
-    // void pop_back(){
-    //     if (head==NULL){
-    //         cout << "Linked List is empty " << endl;
-    //         return;
-    //     }
-    //     Node* temp = head;
-    //     while (temp->next != NULL){
-    //         temp = temp->next;
-    //     }
-    //     temp->next = NULL;
-    //     delete tail;
-    //     tail = temp;
-    // }
+    int getIndexOf(int val){
+        int index = 0;
+        Node* curr = head;
+        while (curr != NULL){
+            if (curr->data == val){
+                return index;
+            }
+            curr = curr->next;
+            index++;
+        }
+        return -1;
+    }
+
+    bool contains(int val){
+        return getIndexOf(val) != -1;
+    }
+
+    Node* getPreviousNode(Node* node){
+        Node* curr = head;
+        while (curr != NULL && curr->next != node){
+            curr = curr->next;
+        }
+        return curr;
+    }
+
+    void insert(int val, int index){
+        if (index < 0 || index > size) return;
+        if (index == 0){
+            push_front(val);
+            return;
+        }
+        if (index == size){
+            push_back(val);
+            return;
+        }
+        Node* newNode = new Node(val);
+        Node* curr = head;
+        for (int i=0; i < index-1; i++){
+            curr = curr->next;
+        }
+        newNode->next = curr->next;
+        curr->next = newNode;
+        size++;
+    }
+
+    void deleteAt(int index){
+        if (index < 0 || index > size) return;
+        if (index == 0){
+            pop_front();
+            return;
+        }
+        if (index == size){
+            pop_back();
+            return;
+        }
+        Node* curr = head;
+        for (int i=0; i<index-1; i++){
+            curr = curr->next;
+        }
+        Node* temp = curr->next;
+        curr->next = temp->next;
+        delete temp;
+        size--;
+    }
+
+    int* toArray(){
+        int* arr = new int[size];
+        Node* curr = head;
+        int i = 0;
+        while (curr != NULL){
+            arr[i++] = curr->data;
+            curr = curr->next;
+        }
+        return arr;
+    }
+
+    int getSize(){
+        return size;
+    }
+
+    bool isEmpty(){
+        return (size == 0);
+    }
 
     void printLL(){
         Node *temp = head;
         while (temp != NULL){
-            cout << temp->data << " -> ";
+            cout << temp->data << " ";
             temp = temp->next;
         }
         cout << "NULL" << endl;

@@ -92,14 +92,24 @@ class List{
         cout << "NULL" << endl;
     }
 
-    void middleElement(){
+    int findMiddle(){
         Node* slow = head;
         Node* fast = head;
         while (fast && fast->next){
             slow = slow->next;
             fast = fast->next->next;
         }
-        cout << slow->data << endl;
+        return slow->data;
+    }
+
+    Node* findMid(){
+        Node* slow = head;
+        Node* fast = head;
+        while (fast != NULL && fast->next != NULL){
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        return slow;
     }
 
 /*
@@ -133,6 +143,6 @@ int main(){
     l1.push_back(6);
 
     l1.printLL();
-    l1.middleElement();
+    l1.findMid();
 
 }

@@ -105,6 +105,20 @@ class List{
         }
         head = prev;    
     }
+
+    void reverse(){
+        Node* curr = head;
+        Node* prev = NULL;
+        Node* next = NULL;
+
+        while (curr != head){
+            next = curr->next;     // Step 1: Store next
+            curr->next = prev;     // Step 2: Reverse the pointer
+            prev = curr;           // Step 3: Move prev one step forward
+            curr = next;           // Step 4: Move current one step forward
+        }
+        head = prev;
+    }
 };
 
 

@@ -11,6 +11,7 @@ Checking is a LL is Palindrome
 
 
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class Node{
@@ -28,6 +29,7 @@ class List{
 private:
     Node* head;
     Node* tail;
+    int size;
 
 public:
     List(){
@@ -99,6 +101,57 @@ public:
         bool res = isIdentical(head, secondHalf);
         return res;
     }
+
+    bool checkPalindrome(){
+        if (head == NULL || head->next == NULL){
+            return true;
+        }
+        vector<int> arr;
+        Node* temp = head;
+        while (temp != NULL){
+            arr.push_back(temp->data);
+            temp = temp->next;
+        }
+
+        int i=0, j = arr.size()-1;
+        while (i < j){
+            if (arr[i] != arr[j]){
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+
+    bool checkForPalindrome(){
+        if (head == NULL || head->next == NULL){
+            return true;
+        }
+
+        int* arr = new int[size]; 
+        Node* temp = head;
+        int k=0;
+        while (temp != NULL){
+            arr[k++] = temp->data;
+            temp = temp->next;
+        }
+
+        int i=0, j = size-1;
+        while (i < j){
+            if (arr[i] != arr[j]){
+                delete[] arr; 
+                return false;
+            }
+            i++;
+            j--;
+        }
+        
+        delete[] arr; 
+        return true;
+    }
+
+
 };
 
 int main(){
