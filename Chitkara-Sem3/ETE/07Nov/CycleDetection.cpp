@@ -13,12 +13,13 @@ public:
         adjList = new list<int>[V];
     }
 
+    // u = Source
     void createEdge(int u, int dest) {
         adjList[u].push_back(dest);
         adjList[dest].push_back(u);
     }
 
-    // Source = u
+    // u = Source
     void removeEdge(int u, int v) {
         adjList[u].remove(v);
         adjList[v].remove(u);
@@ -49,25 +50,46 @@ public:
         cout << endl;
     }
 
+    bool isCyclicVertex(int u, vector<bool>& visited, int parent) {
+        visited[u] = true;
+        for (int x : adjList[u]) {
+            if (!visited[x]) {
+                if (isCyclicVertex(x, visited, u))
+                    return true;
+            } else if (x != parent)
+                return true;
+        }
+        return false;
+    }
+
+    bool isCyclic() {
+        vector<bool> visited(V, false);
+        for (int i = 0; i < V; i++)
+            if (!visited[i])
+                if (isCyclicVertex(i, visited, -1))
+                    return true;
+        return false;
+    }
+
     ~Graph() {
         delete[] adjList;
     }
 };
 
 int main() {
-    Graph g(6);
+    Graph g(7);
 
     g.createEdge(0, 1);
     g.createEdge(0, 2);
-    g.createEdge(0, 4);
-    g.createEdge(1, 3);
-    g.createEdge(1, 5);
-    g.createEdge(2, 4);
-    g.createEdge(3, 5);
-    g.createEdge(4, 5);
+    g.createEdge(2, 3);
+    g.createEdge(2, 5);
+    g.createEdge(3, 4);
+    g.createEdge(3, 6);
 
     cout << "DFS Traversal starting from vertex 0: ";
     g.DFS(0);
+
+    cout << "Graph is Cyclic: " << ((g.isCyclic()) ? "Yes" : "No") << endl;
 
     return 0;
 }
