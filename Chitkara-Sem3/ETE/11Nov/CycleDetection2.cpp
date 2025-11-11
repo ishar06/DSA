@@ -81,10 +81,9 @@ int main() {
 
     g.createEdge(0, 1);
     g.createEdge(0, 2);
-    g.createEdge(2, 3);
-    g.createEdge(2, 5);
-    g.createEdge(3, 4);
-    g.createEdge(3, 6);
+    g.createEdge(2, 4);
+    g.createEdge(1, 3);
+
 
 
     cout << "DFS Traversal starting from vertex 0: ";
