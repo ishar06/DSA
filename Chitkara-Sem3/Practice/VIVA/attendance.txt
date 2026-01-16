@@ -1,0 +1,18 @@
+DAMAN
+
+
+SUBJECT     DELIVERED       ATTENDED        PERCENTAGE
+DM          43              38              88.37
+SA          43              40              93.02
+DA          114             104             91.23
+DSA         118             108             91.53
+OS          44              40              90.91
+
+
+DM          49              39              79.59
+SA          49              43              87.75
+DA          130             110             84.61
+DSA         134             110             82.08
+OS          50              43              86
+
+
